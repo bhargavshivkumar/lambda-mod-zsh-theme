@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 local LAMBDA="%(?,%{$fg_bold[green]%}λ,%{$fg_bold[red]%}λ)"
-if [[ "$USER" == "root" ]]; then USERCOLOR="red"; else USERCOLOR="yellow"; fi
+if [[ "$USER" == "root" ]]; then USERCOLOR="red"; else USERCOLOR="blue"; fi
 
 # Git sometimes goes into a detached head state. git_prompt_info doesn't
 # return anything in this case. So wrap it in another function and check
@@ -31,14 +31,14 @@ function print_blank_line() {
 PROMPT='
 ${LAMBDA}\
  %{$fg_bold[$USERCOLOR]%}%n\
- %{$fg_no_bold[magenta]%}[%3~]\
+ %{$fg_no_bold[green]%}[%3~]\
  $(check_git_prompt_info)\
 %{$reset_color%}'
 
 RPROMPT='$(git_prompt_short_sha)%{$reset_color%}'
 
 # Format for git_prompt_info()
-ZSH_THEME_GIT_PROMPT_PREFIX="at %{$fg[blue]%} "
+ZSH_THEME_GIT_PROMPT_PREFIX="at %{$fg[blue]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=""
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%} ✔"
